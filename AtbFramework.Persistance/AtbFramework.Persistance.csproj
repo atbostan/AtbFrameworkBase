@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AtbFramework.Application\AtbFramework.Application.csproj" />
-    <ProjectReference Include="..\AtbFramework.Domain\AtbFramework.Domain.csproj" />
   </ItemGroup>
 
 </Project>
