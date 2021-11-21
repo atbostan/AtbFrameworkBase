@@ -14,6 +14,7 @@ namespace AtbFramework.Persistance.Repositories
         where TEntity:BaseEntity<TPrimaryKey>,new()
         where TContext: DbContext , new()
     {
+
         public async Task<TEntity> Add(TEntity entity)
         {
             using (TContext context = new TContext())

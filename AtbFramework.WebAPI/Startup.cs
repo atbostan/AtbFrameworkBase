@@ -1,3 +1,4 @@
+using AtbFramework.Bindings.Interfaces.DependencyResolver;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AtbFramework.Bindings.DependencyResolvers.CustomResolvers;
+using AtbFramework.Bindings.Extensions;
 
 namespace AtbFramework.WebAPI
 {
@@ -31,6 +34,10 @@ namespace AtbFramework.WebAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AtbFramework.WebAPI", Version = "v1" });
+            });
+
+            services.AddDependencyResolvers(new ICustomResolverModule[] {
+                new BusinessDependencyResolver()
             });
         }
 
