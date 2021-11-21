@@ -8,4 +8,8 @@
     <ProjectReference Include="..\AtbFramework.Domain\AtbFramework.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\Business\" />
+  </ItemGroup>
+
 </Project>
