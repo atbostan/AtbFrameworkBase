@@ -10,12 +10,12 @@ namespace AtbFramework.Application.Interfaces.Repository
 {
     public interface IRepository<TEntity,TPrimaryKey> where TEntity:BaseEntity<TPrimaryKey> , new()
     {
-        void Add(TEntity entity);
-        void HardDelete(TEntity entity);
-        TEntity Find(Expression<Func<TEntity, bool>> filter);
-        TEntity FindForHardDelete(Expression<Func<TEntity, bool>> filter);
-        List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
+        Task<TEntity> Add(TEntity entity);
+        Task HardDelete(TEntity entity);
+        Task<TEntity> Find(Expression<Func<TEntity, bool>> filter);
+        Task<TEntity> FindForHardDelete(Expression<Func<TEntity, bool>> filter);
+        Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter = null);
+        Task<TEntity> Update(TEntity entity);
+        Task Delete(TEntity entity);
     }
 }

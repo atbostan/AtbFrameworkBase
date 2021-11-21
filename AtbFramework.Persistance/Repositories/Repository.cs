@@ -14,62 +14,64 @@ namespace AtbFramework.Persistance.Repositories
         where TEntity:BaseEntity<TPrimaryKey>,new()
         where TContext: DbContext , new()
     {
-        public void Add(TEntity entity)
+        public async Task<TEntity> Add(TEntity entity)
         {
             using (TContext context = new TContext())
             {
-                var addedEntity = context.Entry(entity);
+                var addedEntity =  context.Entry(entity);
                 addedEntity.State = EntityState.Added;
-                context.SaveChanges();
+                await context.SaveChangesAsync();
+                return addedEntity.Entity;
             }
         }
 
-        public void HardDelete(TEntity entity)
+        public async Task HardDelete(TEntity entity)
         {
             using (TContext context = new TContext())
             {
                 var deletedEntity = context.Remove(entity);
                 deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
+                await context.SaveChangesAsync();
+            } 
         }
 
-        public TEntity Find(Expression<Func<TEntity, bool>> filter)
+        public async Task<TEntity> Find(Expression<Func<TEntity, bool>> filter)
         {
             using (TContext context = new TContext())
             {
-                return context.Set<TEntity>().Where(x => x.IsDeleted == false).SingleOrDefault(filter);
+                return await context.Set<TEntity>().Where(x => x.IsDeleted == false).SingleOrDefaultAsync(filter);
             }
         }
 
-        public TEntity FindForHardDelete(Expression<Func<TEntity, bool>> filter)
+        public async Task<TEntity> FindForHardDelete(Expression<Func<TEntity, bool>> filter)
         {
             using (TContext context = new TContext())
             {
-                return context.Set<TEntity>().SingleOrDefault(filter);
+                return await context.Set<TEntity>().SingleOrDefaultAsync(filter);
             }
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public async Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (TContext context = new TContext())
             {
-                return filter == null ? context.Set<TEntity>().Where(x => x.IsDeleted == false).ToList() : context.Set<TEntity>().Where(x => x.IsDeleted == false).Where(filter).ToList(); //Eğer filter null'sa direk hepsini getir yoksa(:) filtre uygula
+                return  filter == null ? await context.Set<TEntity>().Where(x => x.IsDeleted == false).ToListAsync() : await context.Set<TEntity>().Where(x => x.IsDeleted == false).Where(filter).ToListAsync(); 
             }
         }
 
-        public void Update(TEntity entity)
+        public async Task<TEntity> Update(TEntity entity)
         {
             using (TContext context = new TContext())
             {
                 entity.ModificationTime = DateTime.Now;
                 var updatedEntities = context.Update(entity);
                 updatedEntities.State = EntityState.Modified;
-                context.SaveChanges();
+                await  context.SaveChangesAsync();
+                return updatedEntities.Entity;
             }
         }
 
-        public void Delete(TEntity entity)
+        public async Task Delete(TEntity entity)
         {
             using (TContext context = new TContext())
             {
@@ -77,7 +79,7 @@ namespace AtbFramework.Persistance.Repositories
                 entity.DeletionTime = DateTime.Now;
                 var updatedEntities = context.Update(entity);
                 updatedEntities.State = EntityState.Modified;
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
     }
