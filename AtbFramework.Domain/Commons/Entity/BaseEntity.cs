@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtbFramework.Domain.Commons
+namespace AtbFramework.Domain.Commons.Entity
 {
     [Serializable]
     public abstract class BaseEntity<TPrimaryKey> : IBaseEntity<TPrimaryKey>

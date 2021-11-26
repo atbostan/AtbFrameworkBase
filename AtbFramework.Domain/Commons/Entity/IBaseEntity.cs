@@ -1,4 +1,4 @@
-﻿namespace AtbFramework.Domain.Commons
+﻿namespace AtbFramework.Domain.Commons.Entity
 {
     public interface IBaseEntity<TPrimaryKey>
     {

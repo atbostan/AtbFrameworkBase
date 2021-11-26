@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AtbFramework.Application.Interfaces.Business;
+using AtbFramework.Domain.Commons.Result;
 using AtbFramework.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,13 +22,14 @@ namespace AtbFramework.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ExampleClass>> GetExample()
+        public async Task<IResult> GetExample()
         {
-            return await _baseExampleService.GetAll();
+           return await _baseExampleService.GetAll();
+            
         }
 
         [HttpPost]
-        public async Task<ExampleClass> Add(ExampleClass ec)
+        public async Task<IResult> Add(ExampleClass ec)
         {
             return await _baseExampleService.Add(ec);
         }

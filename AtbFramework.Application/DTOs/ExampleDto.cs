@@ -1,13 +1,13 @@
-﻿using System;
+﻿using AtbFramework.Application.Interfaces.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AtbFramework.Domain.Commons.Entity;
 
-namespace AtbFramework.Domain.Entities
+namespace AtbFramework.Application.DTOs
 {
-    public class ExampleClass: BaseEntity<int>
+    public class ExampleDto:IDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }

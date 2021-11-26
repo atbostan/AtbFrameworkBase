@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AtbFramework.Domain.Commons;
 using AtbFramework.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
+using AtbFramework.Domain.Commons.Entity;
 
 namespace AtbFramework.Persistance.Repositories
 {
@@ -34,13 +35,14 @@ namespace AtbFramework.Persistance.Repositories
             
         }
 
-        public async Task HardDelete(TEntity entity)
+        public async Task<int> HardDelete(TEntity entity)
         {
            
                 var deletedEntity = _context.Remove(entity);
                 deletedEntity.State = EntityState.Deleted;
-                await _context.SaveChangesAsync();
+                var result=await _context.SaveChangesAsync();
                 await _context.DisposeAsync();
+                return result;
 
         }
 
@@ -71,15 +73,16 @@ namespace AtbFramework.Persistance.Repositories
                 return updatedEntities.Entity;
         }
 
-        public async Task Delete(TEntity entity)
+        public async Task<int> Delete(TEntity entity)
         {
            
                 entity.IsDeleted = true;
                 entity.DeletionTime = DateTime.Now;
                 var updatedEntities = _context.Update(entity);
                 updatedEntities.State = EntityState.Modified;
-                await _context.SaveChangesAsync();
+                var result =await _context.SaveChangesAsync();
                 await _context.DisposeAsync();
+                return result;
 
         }
     }

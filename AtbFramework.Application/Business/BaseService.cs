@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using AtbFramework.Application.Interfaces.Business;
 using AtbFramework.Application.Interfaces.Repository;
 using AtbFramework.Domain.Commons;
+using AtbFramework.Domain.Commons.Constants.Messages;
+using AtbFramework.Domain.Commons.Entity;
+using AtbFramework.Domain.Commons.Result;
 
 namespace AtbFramework.Application.Business
 {
@@ -19,51 +22,53 @@ namespace AtbFramework.Application.Business
         }
 
 
-        public async Task<TEntity> Add(TEntity entity)
+        public async Task<IResult> Add(TEntity entity)
         {
            var result= await _repository.Add(entity);
-            return result;
+           return result==null ? new Result(false, ErrorMessages.CreateMessage) : new Result(true, SuccessMessages.CreateMessage,result);
         }
 
-        public async Task<TEntity> Find(TPrimaryKey Id)
+        public async Task<IResult> Find(TPrimaryKey Id)
         {
             var result = await _repository.Find(x => x.Id.Equals(Id));
-            return result;
+            return result == null ? new Result(true, ErrorMessages.GetMessage) : new Result(true, result);
         }
 
-        public async Task<TEntity> FindForField(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IResult> FindForField(Expression<Func<TEntity, bool>> predicate)
         {
             var result = await _repository.FindForHardDelete(predicate);
-            return result;
+            return result == null ? new Result(true, ErrorMessages.GetMessage) : new Result(true, result);
         }
 
-        public async Task<List<TEntity>> GetAll()
+        public async Task<IResult> GetAll()
         {
             var result = await _repository.GetAll();
-            return result;
+            return result==null ? new Result(true, ErrorMessages.GetMessage) : new Result(true, result);
 
         }
 
-        public async Task<List<TEntity>> GetAllByField(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IResult> GetAllByField(Expression<Func<TEntity, bool>> predicate)
         {
             var result = await _repository.GetAll(predicate);
-            return result;
+            return result == null ? new Result(true, ErrorMessages.GetMessage) : new Result(true, result);
         }
 
-        public async Task HardDelete(TEntity entity)
+        public async Task<IResult> HardDelete(TEntity entity)
         {
-            await _repository.HardDelete(entity);
+            var result =await _repository.HardDelete(entity);
+            return result == 0 ? new Result(false, ErrorMessages.DeleteMessage) : new Result(true,SuccessMessages.DeleteMessage);
         }
 
-        public async Task Delete(TEntity entity)
+        public async Task<IResult> Delete(TEntity entity)
         {
-            await _repository.Delete(entity);
+            var result=await _repository.Delete(entity);
+            return result == 0 ? new Result(false, ErrorMessages.DeleteMessage) : new Result(true, SuccessMessages.DeleteMessage);
         }
 
-        public async Task<TEntity> Update(TEntity entity)
+        public async Task<IResult> Update(TEntity entity)
         {
            var result = await _repository.Update(entity);
-           return result;
+           return result == null ? new Result(false, ErrorMessages.UpdateMessage) : new Result(true,SuccessMessages.UpdateMessage, result);
         }
     }
 }
