@@ -14,6 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AtbFramework.Bindings.DependencyResolvers.CustomResolvers;
 using AtbFramework.Bindings.Extensions;
+using AtbFramework.Persistance.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace AtbFramework.WebAPI
 {
@@ -31,14 +33,23 @@ namespace AtbFramework.WebAPI
         {
 
             services.AddControllers();
+            services.AddHttpContextAccessor();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AtbFramework.WebAPI", Version = "v1" });
             });
 
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConnectionStrings:SQLConnection"].ToString(), o => o.MigrationsAssembly("AtbFramework.Persistance"));
+            });
+
+
             services.AddDependencyResolvers(new ICustomResolverModule[] {
                 new BusinessDependencyResolver()
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

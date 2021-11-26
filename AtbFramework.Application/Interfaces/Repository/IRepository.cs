@@ -8,7 +8,7 @@ using AtbFramework.Domain.Commons;
 
 namespace AtbFramework.Application.Interfaces.Repository
 {
-    public interface IRepository<TEntity,TPrimaryKey> where TEntity:BaseEntity<TPrimaryKey> , new()
+    public interface IRepository<TEntity,TPrimaryKey> where TEntity: BaseEntity<TPrimaryKey>, new()
     {
         Task<TEntity> Add(TEntity entity);
         Task HardDelete(TEntity entity);
