@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AtbFramework.Persistance.Migrations
 {
-    public partial class init1 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,13 +17,13 @@ namespace AtbFramework.Persistance.Migrations
                     Surname = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     City = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     Number = table.Column<int>(type: "int", maxLength: 25, nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<int>(type: "int", nullable: false),
-                    ModificationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifierUserId = table.Column<int>(type: "int", nullable: false),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DeletorUserId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatorUserId = table.Column<int>(type: "int", nullable: true),
+                    ModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifierUserId = table.Column<int>(type: "int", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletorUserId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -33,7 +33,7 @@ namespace AtbFramework.Persistance.Migrations
             migrationBuilder.InsertData(
                 table: "Example",
                 columns: new[] { "Id", "City", "CreationTime", "CreatorUserId", "DeletionTime", "DeletorUserId", "IsDeleted", "ModificationTime", "ModifierUserId", "Name", "Number", "Surname" },
-                values: new object[] { 1, "Ankara", new DateTime(2021, 11, 26, 0, 7, 32, 805, DateTimeKind.Local).AddTicks(8426), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Ahmet Tarık", 88754, null });
+                values: new object[] { 1, "Ankara", new DateTime(2021, 11, 27, 18, 20, 49, 313, DateTimeKind.Local).AddTicks(3415), null, null, null, null, null, null, "Ahmet Tarık", 88754, null });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

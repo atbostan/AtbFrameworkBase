@@ -14,7 +14,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AtbFramework.Bindings.DependencyResolvers.CustomResolvers;
 using AtbFramework.Bindings.Extensions;
+using AtbFramework.Bindings.Mapping.Automap;
 using AtbFramework.Persistance.Context;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace AtbFramework.WebAPI
@@ -31,6 +33,13 @@ namespace AtbFramework.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AutoMApperConfiguration
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MapProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddControllers();
             services.AddHttpContextAccessor();
@@ -68,10 +77,15 @@ namespace AtbFramework.WebAPI
 
             app.UseAuthorization();
 
+           
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+           
         }
     }
 }

@@ -32,25 +32,25 @@ namespace AtbFramework.Persistance.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<DateTime>("CreationTime")
+                    b.Property<DateTime?>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CreatorUserId")
+                    b.Property<int?>("CreatorUserId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DeletionTime")
+                    b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DeletorUserId")
+                    b.Property<int?>("DeletorUserId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("ModificationTime")
+                    b.Property<DateTime?>("ModificationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ModifierUserId")
+                    b.Property<int?>("ModifierUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -74,13 +74,7 @@ namespace AtbFramework.Persistance.Migrations
                         {
                             Id = 1,
                             City = "Ankara",
-                            CreationTime = new DateTime(2021, 11, 26, 0, 7, 32, 805, DateTimeKind.Local).AddTicks(8426),
-                            CreatorUserId = 0,
-                            DeletionTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DeletorUserId = 0,
-                            IsDeleted = false,
-                            ModificationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModifierUserId = 0,
+                            CreationTime = new DateTime(2021, 11, 27, 18, 20, 49, 313, DateTimeKind.Local).AddTicks(3415),
                             Name = "Ahmet Tarık",
                             Number = 88754
                         });

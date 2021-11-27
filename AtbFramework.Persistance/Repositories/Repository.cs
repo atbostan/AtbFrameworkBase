@@ -46,9 +46,9 @@ namespace AtbFramework.Persistance.Repositories
 
         }
 
-        public async Task<TEntity> Find(Expression<Func<TEntity, bool>> filter)
+        public async Task<TEntity> Find(Expression<Func<TEntity, bool>> filter=null)
         {
-                return await _context.Set<TEntity>().Where(x => x.IsDeleted == false).SingleOrDefaultAsync(filter);
+                return await _context.Set<TEntity>().Where(x => x.IsDeleted == false || x.IsDeleted == null).SingleOrDefaultAsync(filter);
         }
 
         public async Task<TEntity> FindForHardDelete(Expression<Func<TEntity, bool>> filter)
@@ -59,7 +59,7 @@ namespace AtbFramework.Persistance.Repositories
         public async Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
            
-                return  filter == null ? await _context.Set<TEntity>().Where(x => x.IsDeleted == false).ToListAsync() : await _context.Set<TEntity>().Where(x => x.IsDeleted == false).Where(filter).ToListAsync(); 
+                return  filter == null ? await _context.Set<TEntity>().Where(x => x.IsDeleted == false||x.IsDeleted==null).ToListAsync() : await _context.Set<TEntity>().Where(x => x.IsDeleted == false).Where(filter).ToListAsync(); 
         }
 
         public async Task<TEntity> Update(TEntity entity)

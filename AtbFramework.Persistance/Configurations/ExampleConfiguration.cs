@@ -14,14 +14,14 @@ namespace AtbFramework.Persistance.Configurations
         public void Configure(EntityTypeBuilder<ExampleClass> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.CreationTime);
-            builder.Property(x => x.CreatorUserId);
-            builder.Property(x => x.DeletionTime);
-            builder.Property(x => x.DeletorUserId);
-            builder.Property(x => x.ModificationTime);
-            builder.Property(x => x.ModifierUserId);
+            builder.Property(x => x.Id).UseIdentityColumn(1,1);
+            builder.Property(x => x.CreationTime).HasDefaultValue(null);
+            builder.Property(x => x.CreatorUserId).HasDefaultValue(null);
+            builder.Property(x => x.DeletionTime).HasDefaultValue(null);
+            builder.Property(x => x.DeletorUserId).HasDefaultValue(null);
+            builder.Property(x => x.ModificationTime).HasDefaultValue(null);
+            builder.Property(x => x.ModifierUserId).HasDefaultValue(null);
             builder.Property(x => x.IsDeleted);
-            builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.City).HasMaxLength(25);
             builder.Property(x => x.Name).HasMaxLength(25);
             builder.Property(x => x.Number).HasMaxLength(25);
