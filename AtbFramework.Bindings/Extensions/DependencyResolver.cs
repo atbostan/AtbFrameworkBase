@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AtbFramework.Bindings.DependencyResolvers;
+using AtbFramework.Application.DependencyResolvers;
 using AtbFramework.Bindings.Interfaces.DependencyResolver;
 using Microsoft.Extensions.DependencyInjection;
 
