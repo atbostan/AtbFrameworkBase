@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AtbFramework.Application.CrossCuttingConcerns.Logging.Service;
 using AtbFramework.Bindings.DependencyResolvers.CustomResolvers;
 using AtbFramework.Bindings.Extensions;
 using AtbFramework.Bindings.Mapping.Automap;
@@ -42,6 +43,13 @@ namespace AtbFramework.WebAPI
             services.AddSingleton(mapper);
 
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    "AllowOrigin",
+                    builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+
             services.AddHttpContextAccessor();
             services.AddSwaggerGen(c =>
             {
@@ -57,6 +65,9 @@ namespace AtbFramework.WebAPI
             services.AddDependencyResolvers(new ICustomResolverModule[] {
                 new BusinessDependencyResolver()
             });
+
+            services.AddTransient<FileLogger>();
+
 
 
         }
@@ -77,7 +88,7 @@ namespace AtbFramework.WebAPI
 
             app.UseAuthorization();
 
-           
+            app.UseCors("AllowOrigin");
 
 
             app.UseEndpoints(endpoints =>

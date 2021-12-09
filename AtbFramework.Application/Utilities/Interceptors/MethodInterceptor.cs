@@ -7,12 +7,8 @@ using Castle.DynamicProxy;
 
 namespace AtbFramework.Application.Utilities.Interceptors
 {
-    public class MethodInterceptor: MethodInterceptorBaseAttribute
+    public abstract class MethodInterceptor: MethodInterceptorBaseAttribute
     {
-        protected virtual void OnBefore(IInvocation invocation) { }
-        protected virtual void OnAfter(IInvocation invocation) { }
-        protected virtual void OnException(IInvocation invocation, System.Exception e) { }
-        protected virtual void OnSuccess(IInvocation invocation) { }
 
         public override void Intercept(IInvocation invocation)
         {
@@ -21,6 +17,8 @@ namespace AtbFramework.Application.Utilities.Interceptors
             try
             {
                 invocation.Proceed();
+                var result = invocation.ReturnValue as Task;
+                result?.Wait();
             }
             catch (Exception e)
             {
@@ -35,7 +33,24 @@ namespace AtbFramework.Application.Utilities.Interceptors
                     OnSuccess(invocation);
                 }
             }
+
             OnAfter(invocation);
+        }
+
+        protected virtual void OnBefore(IInvocation invocation)
+        {
+        }
+
+        protected virtual void OnAfter(IInvocation invocation)
+        {
+        }
+
+        protected virtual void OnException(IInvocation invocation, Exception e)
+        {
+        }
+
+        protected virtual void OnSuccess(IInvocation invocation)
+        {
         }
     }
 }
