@@ -25,7 +25,7 @@ namespace AtbFramework.Bindings.DependencyResolvers.Autofac
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions()
                 {
-                    Selector = new ApectInterceptorSelector()
+                    Selector = new AspectInterceptorSelector()
                 }).SingleInstance().InstancePerDependency();
             #endregion
         }

@@ -10,7 +10,7 @@ using Castle.DynamicProxy;
 
 namespace AtbFramework.Application.Utilities.Interceptors
 {
-    public class ApectInterceptorSelector: IInterceptorSelector
+    public class AspectInterceptorSelector: IInterceptorSelector
     {
         public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, IInterceptor[] interceptors)
         {
@@ -22,7 +22,7 @@ namespace AtbFramework.Application.Utilities.Interceptors
                 classAttributes.AddRange(methodAttributes);
             }
 
-            classAttributes.Add(new LogAspect(typeof(FileLogger)));
+            //classAttributes.Add(new LogAspect(typeof(FileLogger)));
 
             return classAttributes.OrderBy(x => x.Priority).ToArray();
 
