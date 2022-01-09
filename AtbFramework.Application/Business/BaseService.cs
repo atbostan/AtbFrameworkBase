@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using AtbFramework.Application.CrossCuttingConcerns.Logging.Aspects;
-using AtbFramework.Application.CrossCuttingConcerns.Logging.Service;
-using AtbFramework.Application.DTOs;
+﻿using AtbFramework.Application.DTOs;
 using AtbFramework.Application.Interfaces.Business;
 using AtbFramework.Application.Interfaces.DTO;
 using AtbFramework.Application.Interfaces.Repository;
-using AtbFramework.Domain.Commons;
 using AtbFramework.Domain.Commons.Constants.Messages;
 using AtbFramework.Domain.Commons.Entity;
 using AtbFramework.Domain.Commons.Result;
 using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace AtbFramework.Application.Business
 {
@@ -30,7 +25,6 @@ namespace AtbFramework.Application.Business
         }
 
 
-       [LogAspect(typeof(FileLogger))]
         public async Task<IResult> Add(TEntityDto entityDto)
         {
             var entity = _mapper.Map<TEntity>(entityDto);

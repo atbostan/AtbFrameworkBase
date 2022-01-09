@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AtbFramework.Application.CrossCuttingConcerns.Logging.Service;
 using AtbFramework.Bindings.DependencyResolvers.CustomResolvers;
 using AtbFramework.Bindings.Extensions;
 using AtbFramework.Bindings.Mapping.Automap;
@@ -66,7 +65,6 @@ namespace AtbFramework.WebAPI
                 new BusinessDependencyResolver()
             });
 
-            services.AddTransient<FileLogger>();
 
 
 
