@@ -26,7 +26,7 @@ namespace AtbFramework.Application.Business
             _mapper = mapper;
         }
 
-
+        [AutofacValidationAspect(typeof(ExampleValidator))]
         public async Task<IResult> Add(TEntityDto entityDto)
         {
             var entity = _mapper.Map<TEntity>(entityDto);

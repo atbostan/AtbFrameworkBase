@@ -14,4 +14,8 @@
     <ProjectReference Include="..\AtbFramework.Persistance\AtbFramework.Persistance.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DependencyResolvers\Autofac\" />
+  </ItemGroup>
+
 </Project>
