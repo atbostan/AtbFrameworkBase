@@ -16,8 +16,8 @@ namespace AtbFramework.Bindings.DependencyResolvers.CustomResolvers
     {
         public void Load(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
-            serviceCollection.AddScoped(typeof(IBaseService<,,>), typeof(BaseService<,,>));
+            //serviceCollection.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+            //serviceCollection.AddScoped(typeof(IBaseService<,,>), typeof(BaseService<,,>));
         }
     }
 }

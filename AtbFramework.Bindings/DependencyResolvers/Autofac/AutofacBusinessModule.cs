@@ -21,7 +21,13 @@ namespace AtbFramework.Bindings.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterGeneric(typeof(Repository<,>))
+                                .As(typeof(IRepository<,>))
+                                .InstancePerDependency();
 
+            builder.RegisterGeneric(typeof(BaseService<,,>))
+                             .As(typeof(IBaseService<,,>))
+                             .InstancePerDependency();
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions()
