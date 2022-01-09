@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AtbFramework.Domain\AtbFramework.Domain.csproj" />
+    <ProjectReference Include="..\AtbFramework.Infrastructure\AtbFramework.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

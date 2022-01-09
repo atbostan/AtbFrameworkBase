@@ -5,6 +5,8 @@ using AtbFramework.Application.Interfaces.Repository;
 using AtbFramework.Domain.Commons.Constants.Messages;
 using AtbFramework.Domain.Commons.Entity;
 using AtbFramework.Domain.Commons.Result;
+using AtbFramework.Infrastructure.Validation;
+using AtbFramework.Infrastructure.Validation.FluentValidation;
 using AutoMapper;
 using System;
 using System.Collections.Generic;

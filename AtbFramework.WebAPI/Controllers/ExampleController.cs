@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AtbFramework.Application.DTOs;
+﻿using AtbFramework.Application.DTOs;
 using AtbFramework.Application.Interfaces.Business;
 using AtbFramework.Domain.Commons.Result;
 using AtbFramework.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace AtbFramework.WebAPI.Controllers
 {
