@@ -20,9 +20,4 @@
     <ProjectReference Include="..\AtbFramework.Domain\AtbFramework.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CrossCuttingConcerns\" />
-    <Folder Include="Utilities\" />
-  </ItemGroup>
-
 </Project>
