@@ -19,16 +19,11 @@ namespace AtbFramework.Persistance.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region ApplyEntityConfiguration
-
             modelBuilder.ApplyConfiguration(new ExampleConfiguration());
-
             #endregion
 
             #region ApplySeeds
-
             modelBuilder.ApplyConfiguration(new ExampleSeed());
-
-
             #endregion
         }
     }

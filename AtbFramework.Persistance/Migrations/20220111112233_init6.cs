@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AtbFramework.Persistance.Migrations
 {
-    public partial class init : Migration
+    public partial class init6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,7 @@ namespace AtbFramework.Persistance.Migrations
             migrationBuilder.InsertData(
                 table: "Example",
                 columns: new[] { "Id", "City", "CreationTime", "CreatorUserId", "DeletionTime", "DeletorUserId", "IsDeleted", "ModificationTime", "ModifierUserId", "Name", "Number", "Surname" },
-                values: new object[] { 1, "Ankara", new DateTime(2021, 11, 27, 18, 20, 49, 313, DateTimeKind.Local).AddTicks(3415), null, null, null, null, null, null, "Ahmet Tarık", 88754, null });
+                values: new object[] { 1, "Ankara", new DateTime(2022, 1, 11, 14, 22, 33, 413, DateTimeKind.Local).AddTicks(1231), null, null, null, null, null, null, "Ahmet Tarık", 88754, null });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

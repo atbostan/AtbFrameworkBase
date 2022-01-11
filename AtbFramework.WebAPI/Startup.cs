@@ -18,6 +18,7 @@ using AtbFramework.Bindings.Mapping.Automap;
 using AtbFramework.Persistance.Context;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using AtbFramework.Persistance;
 
 namespace AtbFramework.WebAPI
 {
@@ -33,6 +34,7 @@ namespace AtbFramework.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             //AutoMApperConfiguration
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -55,10 +57,7 @@ namespace AtbFramework.WebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AtbFramework.WebAPI", Version = "v1" });
             });
 
-            services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration["ConnectionStrings:SQLConnection"].ToString(), o => o.MigrationsAssembly("AtbFramework.Persistance"));
-            });
+            services.AddPersistanceServices(Configuration);
 
 
             services.AddDependencyResolvers(new ICustomResolverModule[] {

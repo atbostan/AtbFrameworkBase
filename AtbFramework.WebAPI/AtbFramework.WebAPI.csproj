@@ -19,7 +19,6 @@
     <ProjectReference Include="..\AtbFramework.Application\AtbFramework.Application.csproj" />
     <ProjectReference Include="..\AtbFramework.Bindings\AtbFramework.Bindings.csproj" />
     <ProjectReference Include="..\AtbFramework.Infrastructure\AtbFramework.Infrastructure.csproj" />
-    <ProjectReference Include="..\AtbFramework.Persistance\AtbFramework.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

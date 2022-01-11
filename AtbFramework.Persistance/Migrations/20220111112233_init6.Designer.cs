@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtbFramework.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211127152049_init")]
-    partial class init
+    [Migration("20220111112233_init6")]
+    partial class init6
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,7 +76,7 @@ namespace AtbFramework.Persistance.Migrations
                         {
                             Id = 1,
                             City = "Ankara",
-                            CreationTime = new DateTime(2021, 11, 27, 18, 20, 49, 313, DateTimeKind.Local).AddTicks(3415),
+                            CreationTime = new DateTime(2022, 1, 11, 14, 22, 33, 413, DateTimeKind.Local).AddTicks(1231),
                             Name = "Ahmet Tarık",
                             Number = 88754
                         });

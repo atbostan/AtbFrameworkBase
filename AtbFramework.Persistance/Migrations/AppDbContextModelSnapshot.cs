@@ -74,7 +74,7 @@ namespace AtbFramework.Persistance.Migrations
                         {
                             Id = 1,
                             City = "Ankara",
-                            CreationTime = new DateTime(2021, 11, 27, 18, 20, 49, 313, DateTimeKind.Local).AddTicks(3415),
+                            CreationTime = new DateTime(2022, 1, 11, 14, 22, 33, 413, DateTimeKind.Local).AddTicks(1231),
                             Name = "Ahmet Tarık",
                             Number = 88754
                         });
