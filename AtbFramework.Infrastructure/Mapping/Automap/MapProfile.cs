@@ -9,7 +9,7 @@ using AtbFramework.Domain.Entities;
 using AtbFramework.Application.Interfaces.DTO;
 using AtbFramework.Domain.Commons.Entity;
 
-namespace AtbFramework.Bindings.Mapping.Automap
+namespace AtbFramework.Infrastructure.Mapping.Automap
 {
     public class MapProfile: Profile
     {

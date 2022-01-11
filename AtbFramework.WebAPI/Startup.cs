@@ -1,24 +1,14 @@
+using AtbFramework.Bindings.DependencyResolvers.CustomResolvers;
+using AtbFramework.Bindings.Extensions;
 using AtbFramework.Bindings.Interfaces.DependencyResolver;
+using AtbFramework.Infrastructure;
+using AtbFramework.Persistance;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AtbFramework.Bindings.DependencyResolvers.CustomResolvers;
-using AtbFramework.Bindings.Extensions;
-using AtbFramework.Bindings.Mapping.Automap;
-using AtbFramework.Persistance.Context;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using AtbFramework.Persistance;
 
 namespace AtbFramework.WebAPI
 {
@@ -35,14 +25,8 @@ namespace AtbFramework.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //AutoMApperConfiguration
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MapProfile());
-            });
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
-
+            services.AddPersistanceServices(Configuration);
+            services.AddInfrastructureServices();
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -56,8 +40,6 @@ namespace AtbFramework.WebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AtbFramework.WebAPI", Version = "v1" });
             });
-
-            services.AddPersistanceServices(Configuration);
 
 
             services.AddDependencyResolvers(new ICustomResolverModule[] {
