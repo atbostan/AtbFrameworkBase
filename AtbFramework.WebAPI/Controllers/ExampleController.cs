@@ -9,6 +9,9 @@ using AtbFramework.Application.Interfaces.Business;
 using AtbFramework.Domain.Commons.Result;
 using AtbFramework.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
+using AtbFramework.Application.Business.Queries.GetAll;
+using AtbFramework.Application.Business.Commands.Add;
 
 namespace AtbFramework.WebAPI.Controllers
 {
@@ -17,22 +20,25 @@ namespace AtbFramework.WebAPI.Controllers
     public class ExampleController : ControllerBase
     {
         private readonly IBaseService<ExampleClass,int,ExampleDto> _baseExampleService;
-        public ExampleController(IBaseService<ExampleClass ,int, ExampleDto> baseExampleService)
+        private readonly IMediator _mediator;
+        public ExampleController(IBaseService<ExampleClass ,int, ExampleDto> baseExampleService , IMediator mediator)
         {
             _baseExampleService = baseExampleService;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IResult> GetExample()
         {
-           return await _baseExampleService.GetAll();
+            var query = new GetAllExampleQuery();
+           return await _mediator.Send(query);
             
         }
 
         [HttpPost]
-        public async Task<IResult> Add(ExampleDto ec)
+        public async Task<IResult> Add(AddExampleClassCommand ec)
         {
-            return await _baseExampleService.Add(ec);
+            return await _mediator.Send(ec);
         }
     }
 }

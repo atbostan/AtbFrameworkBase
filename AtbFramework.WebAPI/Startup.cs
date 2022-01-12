@@ -1,3 +1,4 @@
+using AtbFramework.Application;
 using AtbFramework.Bindings.DependencyResolvers.CustomResolvers;
 using AtbFramework.Bindings.Extensions;
 using AtbFramework.Bindings.Interfaces.DependencyResolver;
@@ -24,7 +25,7 @@ namespace AtbFramework.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddApplicationServices();
             services.AddPersistanceServices(Configuration);
             services.AddInfrastructureServices();
             services.AddControllers();
