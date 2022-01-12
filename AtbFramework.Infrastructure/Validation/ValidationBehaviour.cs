@@ -26,7 +26,6 @@ namespace AtbFramework.Infrastructure.Validation
 
             if (failures.Any())
             {
-                throw new FluentValidation.ValidationException(failures);
             }
             return next();
         }

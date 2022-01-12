@@ -1,4 +1,5 @@
-﻿using AtbFramework.Infrastructure.Mapping.Automap;
+﻿using AtbFramework.Infrastructure.Logging;
+using AtbFramework.Infrastructure.Mapping.Automap;
 using AtbFramework.Infrastructure.Validation;
 using AutoMapper;
 using FluentValidation;
@@ -22,8 +23,10 @@ namespace AtbFramework.Infrastructure
 
 
             var assembly = Assembly.GetExecutingAssembly();
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
             services.AddValidatorsFromAssembly(assembly);
+
         }
     }
 }
