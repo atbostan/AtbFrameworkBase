@@ -11,6 +11,7 @@ namespace AtbFramework.Domain.Commons.Constants.Messages
         public const string CreateMessage = "Ekleme işlemi başarılı";
         public const string DeleteMessage = "Silme işlemi başarılı";
         public const string UpdateMessage = "Güncelleme işlemi başarılı";
+        public const string ReadMessage = "Listeleme işlemi başarılı";
     
     }
 }

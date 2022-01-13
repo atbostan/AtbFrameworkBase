@@ -1,7 +1,4 @@
 using AtbFramework.Application;
-using AtbFramework.Bindings.DependencyResolvers.CustomResolvers;
-using AtbFramework.Bindings.Extensions;
-using AtbFramework.Bindings.Interfaces.DependencyResolver;
 using AtbFramework.Infrastructure;
 using AtbFramework.Persistance;
 using Microsoft.AspNetCore.Builder;
@@ -42,10 +39,6 @@ namespace AtbFramework.WebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AtbFramework.WebAPI", Version = "v1" });
             });
 
-
-            services.AddDependencyResolvers(new ICustomResolverModule[] {
-                new BusinessDependencyResolver()
-            });
 
 
 

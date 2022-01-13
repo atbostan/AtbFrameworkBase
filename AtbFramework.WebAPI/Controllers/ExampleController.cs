@@ -19,23 +19,28 @@ namespace AtbFramework.WebAPI.Controllers
     [ApiController]
     public class ExampleController : ControllerBase
     {
-        private readonly IBaseService<ExampleClass,int,ExampleDto> _baseExampleService;
         private readonly IMediator _mediator;
-        public ExampleController(IBaseService<ExampleClass ,int, ExampleDto> baseExampleService , IMediator mediator)
+        public ExampleController(IMediator mediator)
         {
-            _baseExampleService = baseExampleService;
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IResult> GetExample()
+        [HttpGet("examples")]
+        public async Task<IResult> GetExamples()
         {
             var query = new GetAllExampleQuery();
            return await _mediator.Send(query);
             
         }
 
-        [HttpPost]
+        [HttpGet("examples/{Id}")]
+        public async Task<IResult> GetExample(int Id)
+        {
+            var query = new GetAllExampleQuery();
+            return await _mediator.Send(query);
+        }
+
+        [HttpPost("examples")]
         public async Task<IResult> Add(AddExampleClassCommand ec)
         {
             return await _mediator.Send(ec);

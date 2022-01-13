@@ -8,11 +8,16 @@ namespace AtbFramework.Domain.Commons.Result
 {
     public class Result:IResult
     {
+        public Result()
+        {
+                
+        }
         public Result(bool success)
         {
             Success = success;
         }
-        public Result(bool success, string message) : this(success)
+
+        public Result(bool success, List<string> message) : this(success)
         {
             Message = message;
         }
@@ -22,13 +27,14 @@ namespace AtbFramework.Domain.Commons.Result
             Data = data;
         }
 
-        public Result( bool success, string message , object data) : this(success, message)
+        public Result( bool success, List<string> message , object data) : this(success, message)
         {
             Data = data;
         }
 
-        public object Data { get; }
-        public bool Success { get; }
-        public string Message { get; }
+
+        public object Data { get; set; }
+        public bool Success { get; set; }
+        public List<string> Message { get; set; }
     }
 }

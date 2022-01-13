@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AtbFramework.Application\AtbFramework.Application.csproj" />
+    <ProjectReference Include="..\AtbFramework.Persistance\AtbFramework.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

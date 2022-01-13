@@ -15,7 +15,6 @@ namespace AtbFramework.Application.Interfaces.Business
     where TEntityDto : IDto
     {
         Task<IResult> Add(TEntityDto entityDto);
-        Task<IResult> Find(Expression<Func<TEntity, bool>> predicate);
         Task<IResult> GetAll(Expression<Func<TEntity, bool>> predicate = null);
         Task<IResult> HardDelete(TPrimaryKey Id);
         Task<IResult> Delete(TPrimaryKey Id);

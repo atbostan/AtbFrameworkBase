@@ -8,6 +8,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,7 +29,9 @@ namespace AtbFramework.Application.Business.Queries.GetAll
         public async Task<IResult> Handle(GetAllExampleQuery request, CancellationToken cancellationToken)
         {
             var result = request.Predicate == null ? await _repository.GetAll() : await _repository.GetAll(request.Predicate);
-            return result == null ? new Result(true, ErrorMessages.GetMessage) : new Result(true, _mapper.Map<List<ExampleDto>>(result));
+            return result == null ? new Result(true, ErrorMessages.GetMessage) :
+                result.Count == 1 ? new Result(true, message:SuccessMessages.ReadMessage.Split(',').ToList(), _mapper.Map<ExampleDto>(result.SingleOrDefault())) : 
+                new Result(true, message: SuccessMessages.ReadMessage.Split(',').ToList(), _mapper.Map<List<ExampleDto>>(result));
         }
     }
 }

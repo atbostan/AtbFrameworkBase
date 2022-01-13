@@ -28,7 +28,7 @@ namespace AtbFramework.Application.Business.Commands.Add
         {
             var entity = _mapper.Map<ExampleClass>(request.exampleDto);
             var result = await _repository.Add(entity);
-            return result == null ? new Result(false, ErrorMessages.CreateMessage) : new Result(true, SuccessMessages.CreateMessage, result.Id);
+            return result == null ? new Result(false, ErrorMessages.CreateMessage.Split(',').ToList()) : new Result(true, SuccessMessages.CreateMessage.Split(',').ToList(), result.Id);
         }
     }
 }

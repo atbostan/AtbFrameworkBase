@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AtbFramework.Application.DependencyResolvers;
-using AtbFramework.Bindings.Interfaces.DependencyResolver;
+﻿using AtbFramework.Application.DependencyResolvers;
+using AtbFramework.Infrastructure.Interfaces.DependencyResolver;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AtbFramework.Bindings.Extensions
+namespace AtbFramework.Infrastructure.Extensions
 {
     public static class DependencyResolver
     {

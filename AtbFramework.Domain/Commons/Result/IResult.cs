@@ -8,8 +8,8 @@ namespace AtbFramework.Domain.Commons.Result
 {
     public interface IResult
     {
-        public object Data { get; }
-        public bool Success { get; }
-        public string Message { get; }
+        public object Data { get; set; }
+        public bool Success { get; set; }
+        public List<string> Message { get; set; }
     }
 }

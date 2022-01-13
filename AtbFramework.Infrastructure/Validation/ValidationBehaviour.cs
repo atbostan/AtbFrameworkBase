@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AtbFramework.Domain.Commons.Result;
 
 namespace AtbFramework.Infrastructure.Validation
 {
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-        where TRequest : IRequest<TResponse>
+        where TRequest : IRequest<TResponse>, IValidator
     {
         private readonly IEnumerable<IValidator<TRequest>> _validator;
         public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validator)
@@ -26,8 +27,20 @@ namespace AtbFramework.Infrastructure.Validation
 
             if (failures.Any())
             {
+                IResult res = new Result();
+                res.Message = new List<string>();
+                foreach (var VARIABLE in failures)
+                {
+                    res.Message.Add(VARIABLE.ErrorMessage);
+                    res.Success = false;
+                }
+                return Task.FromResult((TResponse)res);
             }
-            return next();
+            else
+            {
+                return next();
+
+            }
         }
     }
 }

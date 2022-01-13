@@ -9,18 +9,16 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AtbFramework.Domain.Commons.Result;
 using Microsoft.Extensions.Configuration;
 
 namespace AtbFramework.Infrastructure.Logging
 {
-    public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class LoggingBehaviour<TRequest, TResponse> : LogConfiguration, IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
     {
         private readonly ILogger<LoggingBehaviour<TRequest, TResponse>> _logger;
-        private IConfigurationRoot _config { get; set; } = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .Build();
-
+   
         public LoggingBehaviour(ILogger<LoggingBehaviour<TRequest, TResponse>> logger)
         {
             _logger = logger;
@@ -30,24 +28,30 @@ namespace AtbFramework.Infrastructure.Logging
 
             var reqInfo = typeof(TRequest);
            
-            var day = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture).Replace("/","");
-            var hour = DateTime.Now.Hour;
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(
-                    path: $@"C:\logs\${day}\${hour}\logs.txt", 
-                    shared: true,
-                    outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
-                .CreateLogger();
+  
 
             Log.Information(reqInfo.Name);
 
+            TResponse response = await next();
 
-        
-            var response =  next().IsFaulted;
+            IResult checkIfError = (IResult)response;
 
-            Log.Warning(reqInfo.Name);
-            //Response
-            return await next();
+
+
+            if (!checkIfError.Success)
+            {
+                var yyy=new LogMessageEntity(false, checkIfError.Message).ToString();
+                Log.Error(new LogMessageEntity(false, checkIfError.Message).ToString());
+
+            }
+            else
+            {
+                Log.Information(new LogMessageEntity(true).ToString());
+            }
+
+            Log.CloseAndFlush();
+
+            return response;
         }
     }
 }

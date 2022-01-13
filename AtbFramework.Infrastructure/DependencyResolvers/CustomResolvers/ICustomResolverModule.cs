@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AtbFramework.Bindings.Interfaces.DependencyResolver
+namespace AtbFramework.Infrastructure.Interfaces.DependencyResolver
 {
     public interface ICustomResolverModule
     {

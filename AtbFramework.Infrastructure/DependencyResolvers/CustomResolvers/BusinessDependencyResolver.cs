@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AtbFramework.Application.Business;
-using AtbFramework.Application.Interfaces.Repository;
-using AtbFramework.Bindings.Interfaces.DependencyResolver;
-using Microsoft.Extensions.DependencyInjection;
-using AtbFramework.Persistance.Repositories;
+﻿using AtbFramework.Application.Business;
 using AtbFramework.Application.Interfaces.Business;
+using AtbFramework.Application.Interfaces.Repository;
+using AtbFramework.Infrastructure.Interfaces.DependencyResolver;
+using AtbFramework.Persistance.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace AtbFramework.Bindings.DependencyResolvers.CustomResolvers
+namespace AtbFramework.Infrastructure.DependencyResolvers.CustomResolvers
 {
     public class BusinessDependencyResolver : ICustomResolverModule
     {
