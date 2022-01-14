@@ -13,5 +13,6 @@ namespace AtbFramework.Application.DTOs
         public string Surname { get; set; }
         public string City { get; set; }
         public int Number { get; set; }
+        public Guid? MockId { get; set; }
     }
 }

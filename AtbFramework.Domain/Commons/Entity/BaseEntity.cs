@@ -17,11 +17,8 @@ namespace AtbFramework.Domain.Commons.Entity
         public virtual DateTime? DeletionTime { get; set; }
         public virtual int? DeletorUserId { get; set; }
         public virtual bool? IsDeleted { get; set; }
-
-        protected BaseEntity()
-        {
-            this.CreationTime = DateTime.Now;
-        }
+        public Guid MockId { get; set; }
+     
 
     }
 }

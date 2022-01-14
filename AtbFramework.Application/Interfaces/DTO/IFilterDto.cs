@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace AtbFramework.Application.Interfaces.DTO
 {
-    public interface IDto
+    public interface IFilterDto
     {
-        public Guid? MockId { get; set; }
+        public Guid MockId { get; set; }
+
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtbFramework.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220111112233_init6")]
-    partial class init6
+    [Migration("20220114203539_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,9 @@ namespace AtbFramework.Persistance.Migrations
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<Guid>("MockId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("ModificationTime")
                         .HasColumnType("datetime2");
 
@@ -76,7 +79,8 @@ namespace AtbFramework.Persistance.Migrations
                         {
                             Id = 1,
                             City = "Ankara",
-                            CreationTime = new DateTime(2022, 1, 11, 14, 22, 33, 413, DateTimeKind.Local).AddTicks(1231),
+                            CreationTime = new DateTime(2022, 1, 14, 23, 35, 39, 334, DateTimeKind.Local).AddTicks(3837),
+                            MockId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "Ahmet Tarık",
                             Number = 88754
                         });

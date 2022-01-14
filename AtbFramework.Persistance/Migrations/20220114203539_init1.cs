@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AtbFramework.Persistance.Migrations
 {
-    public partial class init6 : Migration
+    public partial class init1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,7 +23,8 @@ namespace AtbFramework.Persistance.Migrations
                     ModifierUserId = table.Column<int>(type: "int", nullable: true),
                     DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletorUserId = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    MockId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,8 +33,8 @@ namespace AtbFramework.Persistance.Migrations
 
             migrationBuilder.InsertData(
                 table: "Example",
-                columns: new[] { "Id", "City", "CreationTime", "CreatorUserId", "DeletionTime", "DeletorUserId", "IsDeleted", "ModificationTime", "ModifierUserId", "Name", "Number", "Surname" },
-                values: new object[] { 1, "Ankara", new DateTime(2022, 1, 11, 14, 22, 33, 413, DateTimeKind.Local).AddTicks(1231), null, null, null, null, null, null, "Ahmet Tarık", 88754, null });
+                columns: new[] { "Id", "City", "CreationTime", "CreatorUserId", "DeletionTime", "DeletorUserId", "IsDeleted", "MockId", "ModificationTime", "ModifierUserId", "Name", "Number", "Surname" },
+                values: new object[] { 1, "Ankara", new DateTime(2022, 1, 14, 23, 35, 39, 334, DateTimeKind.Local).AddTicks(3837), null, null, null, null, new Guid("00000000-0000-0000-0000-000000000000"), null, null, "Ahmet Tarık", 88754, null });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

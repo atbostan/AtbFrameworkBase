@@ -26,6 +26,7 @@ namespace AtbFramework.Persistance.Configurations
             builder.Property(x => x.Name).HasMaxLength(25);
             builder.Property(x => x.Number).HasMaxLength(25);
             builder.Property(x => x.Surname).HasMaxLength(25);
+            builder.Property(x => x.MockId).IsRequired(true);
             builder.ToTable("Example");
 
 

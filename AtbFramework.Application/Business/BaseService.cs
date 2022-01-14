@@ -47,15 +47,15 @@ namespace AtbFramework.Application.Business
         public async Task<IResult> HardDelete(TPrimaryKey Id)
         {
             var entity = await _repository.Find(x => x.Id.Equals(Id));
-            var result = await _repository.HardDelete(entity);
-            return result == 0 ? new Result(false, ErrorMessages.DeleteMessage) : new Result(true, SuccessMessages.DeleteMessage);
+            var result =  _repository.HardDelete(entity).IsCompletedSuccessfully;
+            return result == false ? new Result(false, ErrorMessages.DeleteMessage) : new Result(true, SuccessMessages.DeleteMessage);
         }
 
         public async Task<IResult> Delete(TPrimaryKey Id)
         {
             var entity = await _repository.Find(x => x.Id.Equals(Id));
-            var result = await _repository.Delete(entity);
-            return result == 0 ? new Result(false, ErrorMessages.DeleteMessage) : new Result(true, SuccessMessages.DeleteMessage);
+            var result =  _repository.Delete(entity).IsCompletedSuccessfully;
+            return result == false? new Result(false, ErrorMessages.DeleteMessage) : new Result(true, SuccessMessages.DeleteMessage);
         }
 
         public async Task<IResult> Update(TEntityDto entityDto)

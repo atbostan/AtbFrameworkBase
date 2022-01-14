@@ -12,8 +12,8 @@ namespace AtbFramework.Infrastructure.Validation
     {
         public AddExampleClassCommandValidator()
         {
-            RuleFor(x => x.exampleDto.Name).NotEmpty();
-            RuleFor(x => x.exampleDto.Number).NotEmpty();
+            RuleFor(x => x._exampleDto.Name).NotEmpty();
+            RuleFor(x => x._exampleDto.Number).NotEmpty();
         }
     }
 }
