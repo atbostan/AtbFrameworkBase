@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AtbFramework.Domain.Commons.Result;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace AtbFramework.Infrastructure.Logging
 {
@@ -25,28 +26,49 @@ namespace AtbFramework.Infrastructure.Logging
         }
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-
             var reqInfo = typeof(TRequest);
-           
-  
-
-            Log.Information(reqInfo.Name);
+            string classPath = reqInfo.FullName;
+            List<string> logMessages = new List<string>();
+            logMessages.Add(classPath);
 
             TResponse response = await next();
-
             IResult checkIfError = (IResult)response;
 
-
-
-            if (!checkIfError.Success)
+            if (reqInfo.Name.ToLower().Contains("query"))
             {
-                var yyy=new LogMessageEntity(false, checkIfError.Message).ToString();
-                Log.Error(new LogMessageEntity(false, checkIfError.Message).ToString());
+                if (!checkIfError.Success)
+                {
+                    logMessages.AddRange(checkIfError.Message);
+                    string message = new LogMessageEntity(logMessages, false).ToString();
+                    Log.Error(message);
+
+                }
+                else
+                {
+                    string responseJson = JsonConvert.SerializeObject(checkIfError.Data).ToString();
+                    logMessages.Add(responseJson);
+                    logMessages.AddRange(checkIfError.Message);
+                    string message = new LogMessageEntity(logMessages,true).ToString();
+                    Log.Information(message);
+                }
 
             }
             else
             {
-                Log.Information(new LogMessageEntity(true).ToString());
+                string requestJson = JsonConvert.SerializeObject(request).ToString();
+                logMessages.Add(requestJson);
+
+                if (!checkIfError.Success)
+                {
+                    logMessages.AddRange(checkIfError.Message);
+                    Log.Error(new LogMessageEntity(logMessages, false).ToString());
+
+                }
+                else
+                {
+                    logMessages.AddRange(checkIfError.Message);
+                    Log.Information(new LogMessageEntity(logMessages, true).ToString());
+                }
             }
 
             Log.CloseAndFlush();

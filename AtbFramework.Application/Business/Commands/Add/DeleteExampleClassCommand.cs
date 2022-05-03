@@ -36,13 +36,13 @@ namespace AtbFramework.Application.Business.Commands.Add
                 {
                     var entity = await _repository.Find(x => x.Id.Equals(request._id));
                     var result =  _repository.HardDelete(entity).IsCompletedSuccessfully;
-                    return result == false ? new Result(false, ErrorMessages.DeleteMessage) : new Result(true, SuccessMessages.DeleteMessage);
+                    return result == false ? new Result(false, ErrorMessages.DeleteMessage.Select(x => x.ToString()).ToList()) : new Result(true, SuccessMessages.DeleteMessage.Select(x=>x.ToString()).ToList());
                 }
                 else
                 {
                     var entity = await _repository.Find(x => x.Id.Equals(request._id));
                     var result =  _repository.Delete(entity).IsCompletedSuccessfully;
-                    return result == false ? new Result(false, ErrorMessages.DeleteMessage) : new Result(true, SuccessMessages.DeleteMessage);
+                    return result == false ? new Result(false, ErrorMessages.DeleteMessage.Select(x => x.ToString()).ToList()) : new Result(true, SuccessMessages.DeleteMessage.Select(x => x.ToString()).ToList());
                 }
              
             }

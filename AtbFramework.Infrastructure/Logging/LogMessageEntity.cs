@@ -9,29 +9,44 @@ namespace AtbFramework.Infrastructure.Logging
     public class LogMessageEntity
     {
         internal bool _isSuccess { get; set; }
-        
-        public static List<string> _messages { get; internal set; }
 
-        public LogMessageEntity(bool isSucces)
+        public static List<string> _messages { get; internal set; }
+        public static string _message { get; internal set; }
+
+        public LogMessageEntity(string message)
         {
-            _isSuccess = isSucces;
+            _message = message;
 
         }
-        public LogMessageEntity(bool isSucces, List<string> messages):this(isSucces)
+
+        public LogMessageEntity(List<string> messages)
         {
             _messages = messages;
         }
 
+        public LogMessageEntity(List<string> messages, bool isSuccess) : this(messages)
+        {
+            _messages = messages;
+            _isSuccess = isSuccess;
+        }
+
+        public LogMessageEntity(string message, bool isSuccess) : this(message)
+        {
+            _message = message;
+            _isSuccess = isSuccess;
+
+        }
 
         public override string ToString()
         {
-            if (!_isSuccess)
+            if (_isSuccess == false)
             {
                 return string.Format("{0},{1}", "ErrorOcurred", String.Join(", ", _messages.ToArray()));
-                    
-            }else
+
+            }
+            else
             {
-                return string.Format("TransactionCompletedSuccessfully.");
+                return string.Format("{0},{1}", "TransactionCompletedSuccessfully", String.Join(", ", _messages.ToArray()));
 
             }
         }
